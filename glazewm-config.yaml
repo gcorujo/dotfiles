@@ -108,7 +108,7 @@ bar:
     # max_title_length: 20
     # max_artist_length: 20
     - type: "system tray"
-      padding: "2px 4px"
+      padding: "4px 4px"
 
 workspaces:
   - name: "1"
