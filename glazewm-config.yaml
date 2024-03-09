@@ -43,80 +43,86 @@ bar:
   height: "30px"
   position: "top"
   opacity: 1.0
-  background: "#20242cc4"
+  background: "#25252e"
   foreground: "#ffffff"
   font_family: "JetBrainsMono Nerd Font"
   font_size: "12px"
-  padding: "4px 6px"
-  offset_x: "2"
+  padding: "2px 4px"
+  offset_x: "4"
   offset_y: "2"
   border_radius: "5"
   component_separator:
-    label: " | "
+    label: "  "
   components_left:
     - type: "workspaces"
-      focused_workspace_background: "#ffffff33"
-      displayed_workspace_background: "#00000033"
+      focused_workspace_foreground: "#000000"
+      focused_workspace_background: "#fcfcfc"
+      displayed_workspace_background: "#464647"
       default_workspace_background: "transparent"
-    - type: "cpu"
-      label: "CPU: {percent_usage}%"
-      # How often this counter is refreshed.
-      refresh_interval_ms: 1000
-    - type: "memory"
-      label: "RAM: {percent_usage}%"
-      # How often this counter is refreshed.
-      refresh_interval_ms: 1000
+    # - type: "window title"
+    - type: "weather"
+      foreground: "#f5d1ab"
+      latitude: 34.9055
+      longitude: 56.1851
+      label: "{temperature_celsius}°C"
+      label_sun: "☀️ {temperature_celsius}°C"
+      label_moon: "🌙 {temperature_celsius}°C"
+      label_cloud_moon: "🌙☁️ {temperature_celsius}°C"
+      label_cloud_sun: "⛅ {temperature_celsius}°C"
+      label_cloud_moon_rain: "🌙🌧️ {temperature_celsius}°C"
+      label_cloud_sun_rain: "🌦️ {temperature_celsius}°C"
+      label_cloud_rain: "🌧️ {temperature_celsius}°C"
+      label_snow_flake: "❄️ {temperature_celsius}°C"
+      label_thunderstorm: "⚡ {temperature_celsius}°C"
+      label_cloud: "☁️ {temperature_celsius}°C"
   components_center:
-    - type: "window title"
+    - type: "clock"
+      time_formatting: " HH:mm  󰸗 dddd dd MMM yyyy"
+#    - type: "clock"
+#      time_formatting: "󰸗  dddd dd MMM yyyy "
   components_right:
-    #    - type: "system tray"
     - type: "tiling direction"
       label_horizontal: "⮂"
       label_vertical: "⮁"
-      margin: "0 4px"
+      margin: "0 0"
+    - type: "cpu"
+      label: " {percent_usage}%"
+      # How often this counter is refreshed.
+      refresh_interval_ms: 1000
+      foreground: "#aabff0"
+    - type: "memory"
+      label: " {percent_usage}%"
+      # How often this counter is refreshed.
+      refresh_interval_ms: 1000
+      foreground: "#aabff0"
     - type: "volume"
+      foreground: "#abf5c1"
       label_low: " {volume_level}%"
       label_medium: "󰕾 {volume_level}%"
       label_high: "󰕾 {volume_level}%"
       label_mute: "󰝟 {volume_level}%"
-    - type: "weather"
-      latitude: 34.9055
-      longitude: 56.1851
-      format: "{0}{1}°C" # {0} icon, {1} temperature.
-      temperature_unit: Celsius # or Fahrenheit
-      temperature_format: "0" # Format of {1}
-      label_sun: "☀️"
-      label_moon: "🌙"
-      label_cloud_moon: "🌙☁️"
-      label_cloud_sun: "⛅"
-      label_cloud_moon_rain: "🌙🌧️"
-      label_cloud_sun_rain: "🌦️"
-      label_cloud_rain: "🌧️"
-      label_snow_flake: "❄️"
-      label_thunderstorm: "⚡"
-      label_cloud: "☁️"
-    - type: "clock"
-      # Documentation on formatting date/time string:
-      # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
-      time_formatting: "  HH:mm"
-    - type: "clock"
-      # Documentation on formatting date/time string:
-      # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
-      time_formatting: "󰸗  dddd dd MMM yyyy "
+#   - type: "music"
+    #  label_not_playing: "nada"
+    #  label_paused: "{song_title} - {artist_name}"
+    #  label_playing: "{song_title} - {artist_name} ▶"
+    # max_title_length: 20
+    # max_artist_length: 20
+    - type: "system tray"
+      padding: "2px 4px"
 
 workspaces:
   - name: "1"
     # Optional override for the workspace label in the bar. Does not need to be unique.
-    display_name: "Firefox 󰈹"
+    # display_name: "Firefox 󰈹"
+    # display_name: "Browser"
     # Optionally force the workspace on a specific monitor if it exists. Use the monitor's number
     # as shown in the Windows display settings (eg. 1, 2, 3...).
     bind_to_monitor: 1
     # Optionally prevent workspace from being deactivated when empty.
     keep_alive: true
   - name: "2"
-    display_name: "Terminal "
+    # display_name: "Terminal "
     bind_to_monitor: 1
-    keep_alive: true
   - name: "3"
     bind_to_monitor: 1
   - name: "4"
@@ -129,16 +135,16 @@ workspaces:
     bind_to_monitor: 2
   - name: "8"
     bind_to_monitor: 2
-    display_name: "Discord 󰙯"
+    # display_name: "Discord 󰙯"
   - name: "9"
-    display_name: "Music 󰎈"
+    # display_name: "Music 󰎈"
     bind_to_monitor: 2
 
 window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless running
   # the WM as admin.
   - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost/"
+    match_process_name: "/Taskmgr|ScreenClippingHost|WowClassic/"
 
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: "set floating"
